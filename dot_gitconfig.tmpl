@@ -1,0 +1,57 @@
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+    gpgsign = true
+[user]
+    name = {{ onepasswordRead "op://Personal/Kurone M3 git/name" }}
+    email = {{ onepasswordRead "op://Personal/Kurone M3 git/email" }}
+    signingkey = {{ onepasswordRead "op://Personal/Kurone M3 git/public key" }}
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[delta]
+    features = decorations
+    side-by-side = true
+    line-numbers = true
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+[init]
+    defaultBranch = main
+
+[alias]
+	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+
+[merge]
+    tool = intellij
+
+[mergetool "intellij"]
+    cmd = '/Applications/IntelliJ IDEA.app/Contents/macOS/idea' merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+    trustExitCode = true
+
+[mergetool]
+    keepBackup = false
+
+{{ range $account := .accounts }}
+[includeIf "gitdir:~/{{ $account.dir }}/"]
+    path = ~/{{ $account.dir }}/.gitconfig
+{{ range $org := $account.orgs }}
+[url "{{ $account.name }}-git:{{ $org.name }}/"]
+    insteadOf = git@github.com:{{ $org.name }}/
+{{ end }}
+{{ end }}
+
