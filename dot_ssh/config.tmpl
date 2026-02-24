@@ -1,0 +1,14 @@
+Include ~/.orbstack/ssh/config
+
+Host oracle-kurone
+	User {{ onepasswordRead "op://Personal/Oracle Machine/username" }}
+	HostName {{ onepasswordRead "op://Personal/Oracle Machine/hostname" }}
+	IdentitiesOnly yes
+
+Host kurone-git
+	User git
+	HostName github.com
+	IdentitiesOnly yes
+
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
