@@ -1,0 +1,11 @@
+**/.DS_Store
+
+# OS
+.DS_Store
+**/.DS_Store
+
+# SSH secrets
+.ssh/id_*
+.ssh/*.pub
+.ssh/known_hosts
+.ssh/known_hosts.old
