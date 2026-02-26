@@ -14,12 +14,8 @@ zi light-mode for \
   z-shell/z-a-meta-plugins \
   @annexes @zunit
 
-zi light marlonrichert/zsh-autocomplete
-
-zi cdreplay -q
-
 # pnpm-shell-completion
-zi ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
+zi ice atclone"./zplug.zsh" atpull"%atclone"
 zi light g-plane/pnpm-shell-completion
 
 zi light zsh-users/zsh-autosuggestions
@@ -30,8 +26,6 @@ zle -N recent-paths
 
 zi light zdharma-continuum/fast-syntax-highlighting
 
-compdef top='btm'
-compdef grep='rg'
 
 # Highlight the current autocomplete option
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -42,3 +36,9 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' l
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 
 setopt complete_aliases
+
+# zsh-autocomplete (via Homebrew — manages its own compinit initialization)
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+compdef top='btm'
+compdef grep='rg'
