@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# plugins.txt hash: {{ include "dot_config/intellij/plugins.txt" | sha256sum }}
+xargs idea installPlugins < {{ joinPath .chezmoi.sourceDir "dot_config/intellij/plugins.txt" | quote }}
