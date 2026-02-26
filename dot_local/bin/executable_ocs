@@ -1,4 +1,4 @@
-#!/opt/homebrew/bin/bash
+#!/usr/bin/env bash
 
 data=$( (echo "ID;TITLE;CREATED;UPDATED"; opencode session list --format=json | jq -r --arg pwd "$PWD" '.[] | select(.directory == $pwd) | "\(.id);\(.title);\(.created / 1000 | strftime("%Y-%m-%d %H:%M"));\(.updated / 1000 | strftime("%Y-%m-%d %H:%M"))"') | column -t -s';' )
 id=$(echo "$data" | fzf --layout=reverse --header-lines=1 \
