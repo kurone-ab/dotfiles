@@ -1,0 +1,8 @@
+tap "agiletec-inc/tap"
+tap "anomalyco/tap"
+tap "asheshgoplani/tap"
+tap "dteoh/sqa"
+tap "jetbrains/utils"
+tap "koekeishiya/formulae"
+tap "lihaoyun6/tap"
+tap "nikitabobko/tap"

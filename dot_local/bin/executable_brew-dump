@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="$(chezmoi source-path)"
+TMPFILE="$(mktemp)"
+trap 'rm -f "$TMPFILE"' EXIT
+
+echo "Dumping current brew state..."
+brew bundle dump --force --file="$TMPFILE"
+
+echo "Splitting into sub-files..."
+
+grep '^tap '    "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.tap"    || true
+grep '^brew '   "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.cli"    || true
+grep '^cask '   "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.cask"   || true
+grep '^vscode ' "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.vscode" || true
+
+echo "Applying to home directory..."
+chezmoi apply
+
+echo ""
+echo "Done. Summary:"
+printf "  tap:    %s\n" "$(wc -l < "$SOURCE_DIR/Brewfile.tap"    | tr -d ' ')"
+printf "  brew:   %s\n" "$(wc -l < "$SOURCE_DIR/Brewfile.cli"    | tr -d ' ')"
+printf "  cask:   %s\n" "$(wc -l < "$SOURCE_DIR/Brewfile.cask"   | tr -d ' ')"
+printf "  vscode: %s\n" "$(wc -l < "$SOURCE_DIR/Brewfile.vscode" | tr -d ' ')"
+
+echo ""
+echo "Changes in chezmoi source:"
+git -C "$SOURCE_DIR" diff --stat Brewfile.* 2>/dev/null || true
