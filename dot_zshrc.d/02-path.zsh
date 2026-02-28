@@ -9,13 +9,6 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# bun completions
-[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
-
 . "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
 
