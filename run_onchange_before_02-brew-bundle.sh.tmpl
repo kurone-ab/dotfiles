@@ -7,4 +7,4 @@ set -euo pipefail
 # Brewfile.cask hash: {{ include "Brewfile.cask" | sha256sum }}
 # Brewfile.vscode hash: {{ include "Brewfile.vscode" | sha256sum }}
 
-brew bundle --file={{ joinPath .chezmoi.sourceDir "Brewfile" | quote }} --no-lock
+brew bundle --file={{ joinPath .chezmoi.sourceDir "Brewfile" | quote }}
