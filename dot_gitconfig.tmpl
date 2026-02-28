@@ -46,12 +46,12 @@
 [mergetool]
     keepBackup = false
 
-{{ range $account := .accounts }}
+{{ range $account := .git_accounts }}
 [includeIf "gitdir:~/{{ $account.dir }}/"]
     path = ~/{{ $account.dir }}/.gitconfig
 {{ range $org := $account.orgs }}
-[url "{{ $account.name }}-git:{{ $org.name }}/"]
-    insteadOf = git@github.com:{{ $org.name }}/
+[url "{{ $account.name }}.git:{{ $org }}/"]
+    insteadOf = git@github.com:{{ $org }}/
 {{ end }}
 {{ end }}
 
