@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Create Workspace directories for git accounts
+{{ range $account := .git_accounts }}
+mkdir -p "$HOME/{{ $account.dir }}"
+
+# Check if .gitconfig exists for this account
+if [ ! -f "$HOME/{{ $account.dir }}/.gitconfig" ]; then
+    echo "Notice: $HOME/{{ $account.dir }}/.gitconfig does not exist"
+fi
+{{ end }}

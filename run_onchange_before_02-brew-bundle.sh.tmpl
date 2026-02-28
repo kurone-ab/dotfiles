@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+# Brewfile hash: {{ include "Brewfile" | sha256sum }}
+# Brewfile.tap hash: {{ include "Brewfile.tap" | sha256sum }}
+# Brewfile.cli hash: {{ include "Brewfile.cli" | sha256sum }}
+# Brewfile.cask hash: {{ include "Brewfile.cask" | sha256sum }}
+# Brewfile.vscode hash: {{ include "Brewfile.vscode" | sha256sum }}
+
+brew bundle --file={{ joinPath .chezmoi.sourceDir "Brewfile" | quote }} --no-lock
