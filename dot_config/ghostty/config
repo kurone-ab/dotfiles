@@ -53,7 +53,6 @@ background-blur = true
 theme = "Dracula+"
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
-keybind = shift+enter=text:\n
 
 bell-features = title,attention,border
 
