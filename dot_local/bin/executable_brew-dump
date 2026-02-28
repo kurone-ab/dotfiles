@@ -15,9 +15,6 @@ grep '^brew '   "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.cli"    || true
 grep '^cask '   "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.cask"   || true
 grep '^vscode ' "$TMPFILE" | sort > "$SOURCE_DIR/Brewfile.vscode" || true
 
-echo "Applying to home directory..."
-chezmoi apply
-
 echo ""
 echo "Done. Summary:"
 printf "  tap:    %s\n" "$(wc -l < "$SOURCE_DIR/Brewfile.tap"    | tr -d ' ')"
