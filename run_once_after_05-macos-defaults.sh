@@ -65,6 +65,62 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
+# Trackpad: enable tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+# Trackpad: enable three finger drag
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+
+# Keyboard: disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Keyboard: disable web auto-correct
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+
+# Keyboard: disable auto-capitalize
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Keyboard: disable press-and-hold for accents (enable key repeat)
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Keyboard: use F1, F2, etc. as standard function keys
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# Keyboard: full keyboard access for all controls (Tab navigates all UI)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+
+# Dock: set icon size to 64px
+defaults write com.apple.dock tilesize -int 64
+
+# Dock: enable magnification
+defaults write com.apple.dock magnification -bool true
+
+# Dock: set magnification icon size to 80px
+defaults write com.apple.dock largesize -int 80
+
+# Dock: disable launch animation
+defaults write com.apple.dock launchanim -bool false
+
+# Mission Control: do not auto-rearrange Spaces based on recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Hot corners: disable bottom-right (disables Quick Note on Sonoma+)
+defaults write com.apple.dock wvous-br-corner -int 1
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Desktop: disable click wallpaper to show desktop (Sonoma+)
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# Desktop: disable tiled window margins (Sequoia+)
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
+# Menu bar: use analog clock
+defaults write com.apple.menuextra.clock IsAnalog -bool true
+
+# Activity Monitor: show only my processes
+defaults write com.apple.ActivityMonitor ShowCategory -int 102
+
 # Restart affected apps to apply changes
 killall Dock Finder SystemUIServer 2>/dev/null || true
 echo "macOS defaults applied. Some settings may require logout/restart."
